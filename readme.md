@@ -15,3 +15,22 @@ nvm install node
 ```bash
 DATABASE_URL="file:./db/dev.db"
 ```
+
+# Comando para instalar dependencias
+
+```bash
+npm install
+```
+
+# Comandos para gerar o banco de dados
+
+```bash
+npx prisma generate
+npx prisma db push
+```
+
+# Comando para executar o projeto
+
+```bash
+npm run start:dev
+```
