@@ -34,3 +34,11 @@ npx prisma db push
 ```bash
 npm run start:dev
 ```
+
+## Comando para verificar o banco
+
+```bash
+npx prisma studio
+```
+
+Após executar o comando acima, abra o navegador e entre com a URL `http://localhost:5555`.
