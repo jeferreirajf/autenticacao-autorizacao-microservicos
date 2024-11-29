@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { User } from 'src/domain/entities/user';
 import { UserGateway } from 'src/domain/gateways/user.gateway';
 import {
@@ -6,6 +7,7 @@ import {
   CreateUserUsecase,
 } from 'src/domain/usecase/user/create-user.usecase';
 
+@Injectable()
 export class CreateUserImplementationUsecase extends CreateUserUsecase {
   public constructor(private readonly userGateway: UserGateway) {
     super();
@@ -17,7 +19,7 @@ export class CreateUserImplementationUsecase extends CreateUserUsecase {
   }: CreateUserInputDto): Promise<CreateUserOutputDto> {
     const user = User.create({ email, password });
 
-    this.userGateway.create(user);
+    await this.userGateway.create(user);
 
     const output: CreateUserOutputDto = {
       id: user.getId(),
@@ -26,3 +28,8 @@ export class CreateUserImplementationUsecase extends CreateUserUsecase {
     return output;
   }
 }
+
+export const CreateUserUsecaseProvider = {
+  provide: CreateUserUsecase,
+  useClass: CreateUserImplementationUsecase,
+};
